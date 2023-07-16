@@ -12,8 +12,11 @@ COPY go.mod go.sum ./
 #     go mod download
 
 RUN go mod download
+RUN go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
+RUN go install github.com/pressly/goose/v3/cmd/goose@latest
 
 COPY . ./
+
 
 
 # RUN --mount=type=cache,target=/go/pkg/mod/cache \
@@ -23,6 +26,9 @@ COPY . ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /rssagg
 
 EXPOSE 8000
+
+#goose migrations on schema folder
+#sqlc generate where is the sqlc.yaml
 
 CMD ["/rssagg"]
 
