@@ -12,7 +12,7 @@ COPY go.mod go.sum ./
 #     go mod download
 
 RUN go mod download
-RUN go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
+RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.20.0
 RUN go install github.com/pressly/goose/v3/cmd/goose@latest
 
 COPY . ./
